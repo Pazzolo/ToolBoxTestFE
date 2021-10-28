@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderComponent from "../components/HeaderComponent";
 import ResultsComponent from "../components/ResultsComponent";
 
 const MainPage = () => {
-  const greeting = "Hello Function Component!";
-
+  const [items, setItems] = useState([]);
+  const addItems = ({ newItem }) => {
+    var currentList = items.slice();
+    currentList.unshift(newItem);
+    setItems(currentList);
+  };
   return (
-    <div style={{ backgroundColor: "#f8f9fa", height: "100%", width: "100%", position:"absolute" }}>
-      <HeaderComponent />
-      <ResultsComponent />
+    <div
+      style={{
+        backgroundColor: "#edeef0",
+        height: "100%",
+        width: "100%",
+        position: "absolute",
+      }}
+    >
+      <HeaderComponent addItems={addItems} />
+      <ResultsComponent items={items} />
     </div>
   );
 };
